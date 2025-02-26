@@ -2,6 +2,39 @@
 
 .cardWrapper{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    background-color: bisque;
+    grid-template-columns: repeat(auto-fit, minmax(19%, 1fr));
+    gap: 20px;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover{
+    transform: scale(1.05);
+}
+
+.countryName{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.countryPop{
+    margin: 10px 0 10px 10px;
+    font-size: 20px;
+}
+
+.countryReg{
+    margin: 10px 0 10px 10px;
+    font-size: 20px;
 }
