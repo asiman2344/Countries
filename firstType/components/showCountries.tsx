@@ -2,12 +2,13 @@ import React from 'react';
 import './component.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import {useNavigate} from 'react-router-dom'
 
 type Country = {
     name:{
         common:string
     },
-    cca2:string,
+    ccn3:string,
     capital:string[],
     region:string, 
     languages:{
@@ -23,6 +24,7 @@ type Country = {
 
 function showCountries() {
     const [countries, setCountries] = useState<Country[]>([]);
+    const navigate = useNavigate();
 
     const handleData = async () => {
         const res = await axios.get('https://restcountries.com/v3.1/all');
@@ -39,14 +41,18 @@ function showCountries() {
         }
     }, [countries]);
 
+    const navigateCard = (ccn3:string) => {
+        navigate(`/country/${ccn3}`);
+    }
+
     return (
     
         <div className="showCountries">
             <div className="cardWrapper">
                 {
                     countries.map(country=>(
-                        <div className="card border border-gray-200 rounded-b-md" key={country.cca2}>
-                            <div className='flag w-full h-[200px]'>
+                        <div onClick={()=>navigateCard(country.ccn3)} className="card border border-gray-300 rounded-b-md" key={country.ccn3}>
+                            <div className='flag w-full h-[200px] border border-gray-200 '>
                                 <img className='w-full h-full object-cover' src={country?.flags.png} alt="" />
                             </div>
                             <div className='countryInfo'>
