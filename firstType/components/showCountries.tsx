@@ -37,7 +37,7 @@ function showCountries() {
 
     useEffect(() => {
         if (countries.length > 0) {
-            console.log(countries[0].name.common);
+            // console.log(countries[0].name.common);
         }
     }, [countries]);
 
@@ -51,7 +51,7 @@ function showCountries() {
             <div className="cardWrapper">
                 {
                     countries.map(country=>(
-                        <div onClick={()=>navigateCard(country.ccn3)} className="card border border-gray-300 rounded-b-md" key={country.ccn3}>
+                        <div onClick={()=>navigateCard(country.ccn3)} className="card border border-gray-300 rounded-b-md" key={Number(country.ccn3)}>
                             <div className='flag w-full h-[200px] border border-gray-200 '>
                                 <img className='w-full h-full object-cover' src={country?.flags.png} alt="" />
                             </div>
