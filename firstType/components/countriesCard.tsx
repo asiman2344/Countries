@@ -1,5 +1,5 @@
 import React, { use } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -25,6 +25,9 @@ type Country = {
 function countriesCard() {
   const { code } = useParams<{ code: string }>()
   const [country, setCountry] = useState<Country[]>([]);
+  const navigate = useNavigate()
+
+  console.log(code, 'sfasfasfas');
 
   const getCountry = async () => {
     const response = await axios.get(`https://restcountries.com/v3.1/alpha/${code}`)
@@ -33,12 +36,16 @@ function countriesCard() {
 
   useEffect(() => {
     getCountry()
-  }, [])
+  }, [code])
 
   useEffect(() => {
     console.log(country);
 
   }, [country])
+
+  const handleBorderClick = (borderCode: string) => {
+    navigate(`/country/${borderCode}`)
+  }
 
   return (
     <div className='countryCardContainer'>
@@ -63,11 +70,11 @@ function countriesCard() {
       <div className="countryBorders">
         <h1>Borders</h1>
         <div>
-          {
-            country[0]?.borders?.map((border,index)=>(
-              <button>{border}</button>
-            ))
-          }
+          {country[0]?.borders.map((border) => (
+            <button key={border} onClick={() => handleBorderClick(border)}>
+              {border}
+            </button>
+          ))}
         </div>
       </div>
     </div>
