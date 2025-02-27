@@ -19,6 +19,7 @@ type Country = {
     svg: string
   },
   population: number,
+  borders: string[],
 }
 
 function countriesCard() {
@@ -40,20 +41,33 @@ function countriesCard() {
   }, [country])
 
   return (
-    <div className='countryCard'>
-      <div className="cardAbout">
-        <div className='cardTitle'>
-          <h1>{country[0]?.name?.common}</h1>
+    <div className='countryCardContainer'>
+      <div className='countryCard'>
+        <div className="cardAbout">
+          <div className='cardTitle'>
+            <h1>{country[0]?.name?.common}</h1>
+          </div>
+          <div className="cardContent">
+            <div className='cardImg'>
+              <img src={country[0]?.flags?.png} alt="" />
+            </div>
+            <div className="cardInfo">
+              <h1>Capital: {country[0]?.capital[0]}</h1>
+              <h1>Region: {country[0]?.region}</h1>
+              <h1>Population: {country[0]?.population}</h1>
+            </div>
+          </div>
         </div>
-        <div className="cardContent">
-          <div className='cardImg'>
-            <img src={country[0]?.flags?.png} alt="" />
-          </div>
-          <div className="cardInfo">
-            <h1>Capital: {country[0]?.capital[0]}</h1>
-            <h1>Region: {country[0]?.region}</h1>
-            <h1>Population: {country[0]?.population}</h1>
-          </div>
+      </div>
+
+      <div className="countryBorders">
+        <h1>Borders</h1>
+        <div>
+          {
+            country[0]?.borders?.map((border,index)=>(
+              <button>{border}</button>
+            ))
+          }
         </div>
       </div>
     </div>
