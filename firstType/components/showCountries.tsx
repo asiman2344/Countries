@@ -9,6 +9,7 @@ type Country = {
         common:string
     },
     ccn3:string,
+    cca3:string,
     capital:string[],
     region:string, 
     languages:{
@@ -41,8 +42,8 @@ function showCountries() {
         }
     }, [countries]);
 
-    const navigateCard = (ccn3:string) => {
-        navigate(`/country/${ccn3}`);
+    const navigateCard = (cca3:string) => {
+        navigate(`/country/${cca3}`);
     }
 
     return (
@@ -51,7 +52,7 @@ function showCountries() {
             <div className="cardWrapper">
                 {
                     countries.map(country=>(
-                        <div onClick={()=>navigateCard(country.ccn3)} className="card border border-gray-300 rounded-b-md" key={Number(country.ccn3)}>
+                        <div onClick={()=>navigateCard(country.ccn3)} className="card border border-gray-300 rounded-b-md" key={Number(country.cca3)}>
                             <div className='flag w-full h-[200px] border border-gray-200 '>
                                 <img className='w-full h-full object-cover' src={country?.flags.png} alt="" />
                             </div>

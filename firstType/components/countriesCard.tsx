@@ -8,6 +8,7 @@ type Country = {
     common: string
   },
   ccn3: string,
+  cca3: string
   capital: string[],
   region: string,
   languages: {
@@ -70,7 +71,7 @@ function countriesCard() {
       <div className="countryBorders">
         <h1>Borders</h1>
         <div>
-          {country[0]?.borders.map((border) => (
+          {country[0]?.borders?.map((border) => (
             <button key={border} onClick={() => handleBorderClick(border)}>
               {border}
             </button>
