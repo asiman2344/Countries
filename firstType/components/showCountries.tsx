@@ -2,25 +2,25 @@ import React from 'react';
 import './component.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 type Country = {
-    name:{
-        common:string
+    name: {
+        common: string
     },
-    ccn3:string,
-    cca3:string,
-    capital:string[],
-    region:string, 
-    languages:{
-        [key:string]:string
+    ccn3: string,
+    cca3: string,
+    capital: string[],
+    region: string,
+    languages: {
+        [key: string]: string
     },
-    area:number,
-    flags:{
-        png:string,
-        svg:string
+    area: number,
+    flags: {
+        png: string,
+        svg: string
     },
-    population:number,
+    population: number,
 }
 
 function showCountries() {
@@ -33,7 +33,7 @@ function showCountries() {
     }
 
     useEffect(() => {
-        handleData();  
+        handleData();
     }, []);
 
     useEffect(() => {
@@ -42,17 +42,38 @@ function showCountries() {
         }
     }, [countries]);
 
-    const navigateCard = (cca3:string) => {
+    const navigateCard = (cca3: string) => {
         navigate(`/country/${cca3}`);
     }
 
     return (
-    
+
         <div className="showCountries">
+            <div className="navbar">
+                <div className='navbarContainer'>
+                    <div className='navbarTitle'>
+                        <h1>Countries</h1>
+                    </div>
+                    <div>
+                        <Link to='/'><input type="text" placeholder='Search for a country...' className='searchInput' /></Link>
+                    </div>
+                    <div>
+                        <select name="" id="">
+                            <option value="Filter by Region">Filter by Region</option>
+                            <option value="All">All</option>
+                            <option value="Africa">Africa</option>
+                            <option value="America">America</option>
+                            <option value="Asia">Asia</option>
+                            <option value="Europe">Europe</option>
+                            <option value="Oceania">Oceania</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div className="cardWrapper">
                 {
-                    countries.map(country=>(
-                        <div onClick={()=>navigateCard(country.ccn3)} className="card border border-gray-300 rounded-b-md" key={Number(country.cca3)}>
+                    countries.map(country => (
+                        <div onClick={() => navigateCard(country.ccn3)} className="card border border-gray-300 rounded-b-md" key={Number(country.cca3)}>
                             <div className='flag w-full h-[200px] border border-gray-200 '>
                                 <img className='w-full h-full object-cover' src={country?.flags.png} alt="" />
                             </div>
